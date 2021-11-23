@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary btn-sm" routerLink="create">New Patients</button>
+    </div>
+    <div class="col">
+
+      <div class="input-group">
+        <select class="form-select" (change)="searchOptionHandler($event)">
+          <option value="byPid">PID</option>
+          <option value="byName">Name</option>
+        </select>
+        <input type="search" class="form-control" placeholder="Search" aria-label="Search"
+               aria-describedby="search-addon"
+               [(ngModel)]='query'/>
+
+        <button type="button" class="btn btn-outline-primary" (click)="search()">search</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th width="50px">PID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Gender</th>
+    <th>Date of Birth</th>
+    <th>Phone</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let patient of page?.data">
+    <td>{{patient.pid}}</td>
+    <td>{{patient.firstName}}</td>
+    <td>{{patient.lastName}}</td>
+    <td>{{patient.gender}}</td>
+    <td>{{patient.dob}}</td>
+    <td>{{patient.phone}}</td>
+    <td>
+      <div align="center">
+        <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/patients/'+patient.pid]">Edit</button>
+        <button type="button" class="btn btn-link btn-sm" (click)="delete(patient.pid)">Delete</button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<nav>
+  <ul class="pagination">
+    <li class="page-item" style="cursor: pointer"><a class="page-link"
+                                                     (click)="changePage(page.currentPage-1)">Previous</a></li>
+
+    <li class="page-item  {{page.currentPage==i+1?'active':''}}"
+        *ngFor="let num of [].constructor(page.totalPages) ; let i = index"
+        style="cursor: pointer">
+      <a class="page-link"
+         (click)="changePage(i+1)">{{i + 1}}</a>
+    </li>
+
+    <li class="page-item" style="cursor: pointer"><a class="page-link" (click)="changePage(page.currentPage+1)">Next</a>
+    </li>
+  </ul>
+</nav>

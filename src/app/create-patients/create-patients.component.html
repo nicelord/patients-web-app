@@ -1,0 +1,86 @@
+<div class="col-md-8 offset-md-3">
+  <h3> Add New Patient </h3>
+
+
+  <a href="#">
+    <button type="button" class="btn btn-primary btn-sm mb-4">&laquo; Back</button>
+  </a>
+  <button type="button" class="btn btn-outline-primary btn-sm mb-4" (click)="random()">Random</button>
+
+
+  <form (submit)="onSubmit()">
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" class="form-control" [(ngModel)]="patient.firstName" name="firstName"/>
+          <label class="form-label">First name</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline">
+          <input type="text" class="form-control" [(ngModel)]="patient.lastName" name="lastName"/>
+          <label class="form-label">Last name</label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row mb-4">
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input placeholder="Selected date" type="date" id="date-picker-example" class="form-control datepicker"
+                 [(ngModel)]="patient.dob" name="dob">
+          <label class="form-label">Date of birth</label>
+
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-outline mb-4">
+          <select class="form-control" [(ngModel)]="patient.gender" name="gender">
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+          </select>
+          <label class="form-label">Gender</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input type="number" class="form-control" [(ngModel)]="patient.phone" name="phone"/>
+          <label class="form-label">Phone</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row mb-4">
+      <div class="form-outline mb-4">
+        <input type="text" id="form6Example4" class="form-control" [(ngModel)]="patient.address.street" name="street"/>
+        <label class="form-label">Street</label>
+      </div>
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input type="text" class="form-control" [(ngModel)]="patient.address.suburb" name="suburb"/>
+          <label class="form-label">Suburb</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-outline mb-4">
+          <input type="text" class="form-control" [(ngModel)]="patient.address.state" name="state"/>
+          <label class="form-label">State</label>
+        </div>
+      </div>
+      <div class="col">
+
+        <div class="form-outline mb-4">
+          <input type="text" class="form-control" [(ngModel)]="patient.address.postCode" name="postCode"/>
+          <label class="form-label">Post Code</label>
+        </div>
+      </div>
+    </div>
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Save</button>
+    <button type="reset" class="btn btn-danger btn-block mb-4" href="/patients">Reset</button>
+  </form>
+</div>
